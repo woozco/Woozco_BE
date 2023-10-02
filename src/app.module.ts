@@ -6,17 +6,19 @@ import { UsersModule } from './users/users.module';
 import { User } from './users/entities/user.entity';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthModule } from './auth/auth.module';
+import { BoardModule } from './board/board.module';
+import { BoardEntity } from './board/entities/board.entity';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'root',
-      password: '1234',
-      database: 'woozco',
-      entities: [User],
+      type: '',
+      host: '',
+      port: ,
+      username: '',
+      password: '',
+      database: '',
+      entities: [User, BoardEntity],
       synchronize: true,
     }),
     JwtModule.register({
@@ -24,6 +26,7 @@ import { AuthModule } from './auth/auth.module';
     }),
     UsersModule,
     AuthModule,
+    BoardModule,
   ],
   controllers: [AppController],
   providers: [AppService],

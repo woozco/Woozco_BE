@@ -9,6 +9,7 @@
 | POST   | [/auth/changepw](#post-authchangepw)  | change password        |           
 | GET    | [/auth/profile](#get-authprofile)     | get user profile       |
 
+## auth/
 
 ### [POST] /auth/login
 
@@ -80,3 +81,113 @@ res.body
 }
 ```
 
+## board/
+
+### [GET] /board/all
+
+get all board 
+
+res.body
+
+```json
+[
+    {
+        "id": 3,
+        "type": "mentee",
+        "title": "예제 제목",
+        "date": "2023-10-03",
+        "startTime": "09:00 AM",
+        "endTime": "11:00 AM",
+        "linkOfProblem": "https://example.com/problem",
+        "wantLanguage": "English",
+        "body": "예제 내용입니다."
+    },
+    {
+        "id": 4,
+        "type": "mentee",
+        "title": "예제 제목",
+        "date": "2023-10-03",
+        "startTime": "09:00 AM",
+        "endTime": "11:00 AM",
+        "linkOfProblem": "https://example.com/problem",
+        "wantLanguage": "English",
+        "body": "예제 내용입니다."
+    },
+]
+```
+
+### [POST] /board/create
+
+create board 
+
+req.body
+```json
+{
+  "id": 2,
+  "type": "mentee",  // 또는 "mentor"
+  "title": "예제 제목",
+  "date": "2023-10-03",
+  "startTime": "09:00 AM",
+  "endTime": "11:00 AM",
+  "linkOfProblem": "https://example.com/problem",
+  "wantLanguage": "English",
+  "body": "예제 내용입니다."
+}
+```
+res.body
+
+```json
+{
+  "id": 2,
+  "type": "mentee",  // 또는 "mentor"
+  "title": "예제 제목",
+  "date": "2023-10-03",
+  "startTime": "09:00 AM",
+  "endTime": "11:00 AM",
+  "linkOfProblem": "https://example.com/problem",
+  "wantLanguage": "English",
+  "body": "예제 내용입니다."
+}
+```
+
+### [DELETE] /board/:id/delete
+
+delete the board corresponding to the id
+
+No response except status code(204)
+
+### [POST] /board/:id/update
+update the board corresponding to thd id
+
+req.body
+
+```json
+{
+    "id": 2,
+    "type": "mentor",
+    "title": "예제 제목",
+    "date": "2023-10-03",
+    "startTime": "09:00 AM",
+    "endTime": "11:00 AM",
+    "linkOfProblem": "https://example.com/problem",
+    "wantLanguage": "English",
+    "body": "예제 내용입니다."
+}
+```
+
+res.body
+
+
+```json
+{
+    "id": 2,
+    "type": "mentor",
+    "title": "예제 제목",
+    "date": "2023-10-03",
+    "startTime": "09:00 AM",
+    "endTime": "11:00 AM",
+    "linkOfProblem": "https://example.com/problem",
+    "wantLanguage": "English",
+    "body": "예제 내용입니다."
+}
+```
