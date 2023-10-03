@@ -7,7 +7,10 @@
 | POST   | [/auth/login](#post-authlogin)        | user login             |
 | POST   | [/auth/register](#post-authregister)  | user register          |
 | POST   | [/auth/changepw](#post-authchangepw)  | change password        |           
-| GET    | [/auth/profile](#get-authprofile)     | get user profile       |
+| GET    | [/board/all](#get-boardall)     | get all board      |
+| POST    | [/board/create](#post-boardcreate)     | create board       |
+| DELETE    | [/board/:id/delete](#delete-boardiddelete)     | delete board       |
+| POST    | [/board/:id/update](#post-boardidupdate)     | change board       |
 
 ## auth/
 
