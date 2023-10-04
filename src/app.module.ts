@@ -8,21 +8,28 @@ import { JwtModule } from '@nestjs/jwt';
 import { AuthModule } from './auth/auth.module';
 import { BoardModule } from './board/board.module';
 import { BoardEntity } from './board/entities/board.entity';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5434,
-      username: 'postgres',
-      password: 'postgres',
-      database: 'woozco_nest',
+      host: process.env.DB_HOST,
+      port: parseInt(process.env.DB_PORT),
+      username: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
       entities: [User, BoardEntity],
       synchronize: true,
     }),
-    JwtModule.register({
-      secret: 'testsecret',
+    JwtModule.registerAsync({
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
+        secret: config.get("JWT_SECRET"),
+      }),
     }),
     UsersModule,
     AuthModule,
@@ -31,4 +38,4 @@ import { BoardEntity } from './board/entities/board.entity';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

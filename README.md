@@ -1,4 +1,4 @@
-# Wooriya_BE
+# Woozco_BE
 
 ## API Docs
 
@@ -102,7 +102,7 @@ res.body
         "startTime": "09:00 AM",
         "endTime": "11:00 AM",
         "linkOfProblem": "https://example.com/problem",
-        "wantLanguage": "English",
+        "wantLanguage": "Python",
         "body": "예제 내용입니다."
     },
     {
@@ -113,7 +113,7 @@ res.body
         "startTime": "09:00 AM",
         "endTime": "11:00 AM",
         "linkOfProblem": "https://example.com/problem",
-        "wantLanguage": "English",
+        "wantLanguage": "Python",
         "body": "예제 내용입니다."
     },
 ]
@@ -133,7 +133,7 @@ req.body
   "startTime": "09:00 AM",
   "endTime": "11:00 AM",
   "linkOfProblem": "https://example.com/problem",
-  "wantLanguage": "English",
+  "wantLanguage": "Python",
   "body": "예제 내용입니다."
 }
 ```
@@ -148,7 +148,7 @@ res.body
   "startTime": "09:00 AM",
   "endTime": "11:00 AM",
   "linkOfProblem": "https://example.com/problem",
-  "wantLanguage": "English",
+  "wantLanguage": "Python",
   "body": "예제 내용입니다."
 }
 ```
@@ -173,7 +173,7 @@ req.body
     "startTime": "09:00 AM",
     "endTime": "11:00 AM",
     "linkOfProblem": "https://example.com/problem",
-    "wantLanguage": "English",
+    "wantLanguage": "Python",
     "body": "예제 내용입니다."
 }
 ```
@@ -190,7 +190,7 @@ res.body
     "startTime": "09:00 AM",
     "endTime": "11:00 AM",
     "linkOfProblem": "https://example.com/problem",
-    "wantLanguage": "English",
+    "wantLanguage": "Python",
     "body": "예제 내용입니다."
 }
 ```
