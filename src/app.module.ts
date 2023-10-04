@@ -12,12 +12,12 @@ import { BoardEntity } from './board/entities/board.entity';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: '',
-      host: '',
-      port: ,
-      username: '',
-      password: '',
-      database: '',
+      type: 'postgres',
+      host: 'localhost',
+      port: 5434,
+      username: 'postgres',
+      password: 'postgres',
+      database: 'woozco_nest',
       entities: [User, BoardEntity],
       synchronize: true,
     }),
