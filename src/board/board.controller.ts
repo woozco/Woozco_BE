@@ -35,10 +35,7 @@ export class BoardController {
 
     @HttpCode(HttpStatus.OK)
     @Post(":id/update")
-    async updatePost(
-        @Param("id") id: number,
-        @Body() updatePostDto: PostUpdateBoardDto
-    ) {
+    async updatePost(@Param("id") id: number, @Body() updatePostDto: PostUpdateBoardDto) {
         return this.boardService.updatePost(id, updatePostDto);
     }
 

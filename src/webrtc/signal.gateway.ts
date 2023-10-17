@@ -1,8 +1,8 @@
 import { SubscribeMessage, WebSocketGateway, WebSocketServer } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
 
-@WebSocketGateway(3001, { namespace: 'webrtc' }) // 3001 포트에서 실행
-export class MessagesGateway {
+@WebSocketGateway(3001, { namespace: 'webrtc' }) 
+export class SignalGateway {
   @WebSocketServer()
   server: Server;
 
