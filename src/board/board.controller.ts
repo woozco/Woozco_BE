@@ -13,7 +13,7 @@ import { BoardService } from "./board.service";
 import { PostCreateBoardDto } from "./dto/create-post.dto";
 import { PostUpdateBoardDto } from "./dto/update-post.dto";
 
-@Controller("board")
+@Controller("api/board")
 export class BoardController {
     constructor(private readonly boardService: BoardService) {}
 

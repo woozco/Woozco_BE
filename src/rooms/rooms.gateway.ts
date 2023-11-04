@@ -1,10 +1,7 @@
-// rooms.gateway.ts
 import {
     SubscribeMessage,
     WebSocketGateway,
     WebSocketServer,
-    OnGatewayInit,
-    WsResponse,
     OnGatewayDisconnect,
     OnGatewayConnection,
 } from "@nestjs/websockets";
