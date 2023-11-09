@@ -13,7 +13,7 @@ import { BoardService } from "./board.service";
 import { PostCreateBoardDto } from "./dto/create-post.dto";
 import { PostUpdateBoardDto } from "./dto/update-post.dto";
 
-@Controller("board")
+@Controller("api/board")
 export class BoardController {
     constructor(private readonly boardService: BoardService) {}
 
@@ -35,10 +35,7 @@ export class BoardController {
 
     @HttpCode(HttpStatus.OK)
     @Post(":id/update")
-    async updatePost(
-        @Param("id") id: number,
-        @Body() updatePostDto: PostUpdateBoardDto
-    ) {
+    async updatePost(@Param("id") id: number, @Body() updatePostDto: PostUpdateBoardDto) {
         return this.boardService.updatePost(id, updatePostDto);
     }
 

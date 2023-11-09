@@ -16,6 +16,7 @@ import { BoardEntity } from './board/entities/board.entity';
 import { RoomsGateway } from './rooms/rooms.gateway';
 import { RoomsService } from './rooms/rooms.service';
 import { RoomEntity } from './rooms/entity/rooms.entity';
+import { RoomsModule } from './rooms/rooms.module.ts';
 
 @Module({
   imports: [
@@ -32,7 +33,6 @@ import { RoomEntity } from './rooms/entity/rooms.entity';
       entities: [User, BoardEntity,RoomEntity],
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([RoomEntity]),
     JwtModule.registerAsync({
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
@@ -42,8 +42,9 @@ import { RoomEntity } from './rooms/entity/rooms.entity';
     UsersModule,
     AuthModule,
     BoardModule,
+    RoomsModule
   ],
   controllers: [AppController],
-  providers: [AppService, RoomsGateway, RoomsService],
+  providers: [AppService]
 })
 export class AppModule { }
