@@ -5,8 +5,9 @@ import { config } from "dotenv";
 import { Repository } from "typeorm";
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { GoogleUser } from "./entity/googleUser.entity";
-import { GoogleService } from "./google.service";
+import { GoogleUser } from "../entity/googleUser.entity";
+import { GoogleService } from "../google.service";
+import { payloadDTO } from "../dto/google.user.dto";
 
 config();
 
@@ -38,9 +39,13 @@ export class GoogleStrategy extends PassportStrategy(Strategy, "google") {
         done: VerifyCallback
     ): Promise<any> {
         const { name, emails, photos } = profile;
-        const user = await this.googleUserRepository.findOne({
+
+        let user = await this.googleUserRepository.findOne({
             where: { email: emails[0].value },
         });
+
+        const iatGenerate = Math.floor(Date.now() / 1000);
+        const expGenerate = Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 14; //14day
 
         if (user) {
             user.firstName = name.familyName;
@@ -48,6 +53,8 @@ export class GoogleStrategy extends PassportStrategy(Strategy, "google") {
             user.picture = photos[0].value;
             user.accessToken = accessToken;
             user.refreshToken = refreshToken;
+            user.iat = iatGenerate;
+            user.exp = expGenerate;
 
             await this.googleUserRepository.save(user);
         } else {
@@ -57,18 +64,19 @@ export class GoogleStrategy extends PassportStrategy(Strategy, "google") {
                 lastName: name.givenName,
                 accessToken,
                 refreshToken,
+                iat: iatGenerate,
+                exp: expGenerate,
             });
 
-            await this.googleUserRepository.save(newUser);
+            user = await this.googleUserRepository.save(newUser);
         }
-        const jwtToken = this.googleService.createJwtToken(user); // AuthService에서 createJwtToken 메서드를 구현해서 사용
 
-        console.log("accessToken: ");
-        console.log(accessToken);
-        console.log("refreshToken: ");
-        console.log(refreshToken);
-        console.log("jwt");
-        console.log(jwtToken);
+        let outerUser = new payloadDTO()
+            .setId(user.id)
+            .setEmail(user.email)
+            .setAccessToken(user.accessToken);
+
+        const jwtToken = this.googleService.createJwtToken(outerUser); // AuthService에서 createJwtToken 메서드를 구현해서 사용
 
         done(null, { user, jwtToken });
     }

@@ -32,6 +32,7 @@ import { RoomsModule } from './rooms/rooms.module.ts';
       database: process.env.DB_NAME,
       entities: [User, BoardEntity,RoomEntity],
       synchronize: true,
+      autoLoadEntities: true,
     }),
     JwtModule.registerAsync({
       inject: [ConfigService],

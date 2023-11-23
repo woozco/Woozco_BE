@@ -12,7 +12,6 @@ import { CustomAuthGuard } from "./auth.guard";
 import { AuthService } from "./auth.service";
 import { LoginDto } from "./dto/login.dto";
 import { CreateUserDto } from "./dto/create-user.dto";
-import { AuthGuard } from "@nestjs/passport";
 
 @Controller("api/auth")
 export class AuthController {
