@@ -13,10 +13,9 @@ import { AuthModule } from './auth/auth.module';
 import { BoardModule } from './board/board.module';
 import { BoardEntity } from './board/entities/board.entity';
 
-import { RoomsGateway } from './rooms/rooms.gateway';
-import { RoomsService } from './rooms/rooms.service';
 import { RoomEntity } from './rooms/entity/rooms.entity';
 import { RoomsModule } from './rooms/rooms.module.ts';
+import { Verify } from './auth/entities/verify.entity';
 
 @Module({
   imports: [
@@ -30,7 +29,7 @@ import { RoomsModule } from './rooms/rooms.module.ts';
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [User, BoardEntity,RoomEntity],
+      entities: [User, BoardEntity, RoomEntity, Verify],
       synchronize: true,
     }),
     JwtModule.registerAsync({

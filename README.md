@@ -7,17 +7,19 @@ tekton test
 
 | Method | URI                                   | Description            |
 |--------|---------------------------------------|------------------------|
-| POST   | [/auth/login](#post-authlogin)        | user login             |
-| POST   | [/auth/register](#post-authregister)  | user register          |
-| POST   | [/auth/changepw](#post-authchangepw)  | change password        |           
-| GET    | [/board/all](#get-boardall)     | get all board      |
-| POST    | [/board/create](#post-boardcreate)     | create board       |
-| DELETE    | [/board/:id/delete](#delete-boardiddelete)     | delete board       |
-| POST    | [/board/:id/update](#post-boardidupdate)     | change board       |
+| POST   | [/api/auth/login](#post-authlogin)        | user login             |
+| POST   | [/api/auth/register](#post-authregister)  | user register          |
+| POST   | [/api/auth/changepw](#post-authchangepw)  | change password        |           
+| POST   | [/api/auth/verifymail](#post-authverifymail)                   | send email verify code        |
+| POST   | [/api/auth/confirm-verifyemail](#post-authconfirm-verifyemail) | confirm verify code           |
+| GET    | [/api/board/all](#get-boardall)     | get all board      |
+| POST    | [/api/board/create](#post-boardcreate)     | create board       |
+| DELETE    | [/api/board/:id/delete](#delete-boardiddelete)     | delete board       |
+| POST    | [/api/board/:id/update](#post-boardidupdate)     | change board       |
 
 ## auth/
 
-### [POST] /auth/login
+### [POST] /api/auth/login
 
 user login
 
@@ -36,7 +38,7 @@ res.body
 }
 ```
 
-### [POST] /auth/register
+### [POST] /api/auth/register
 
 user register
 
@@ -54,7 +56,7 @@ res.body
 Add user 조성연
 ```
 
-### [POST] /auth/changepw
+### [POST] /api/auth/changepw
 
 change password
 (need Authorization header)
@@ -71,7 +73,7 @@ res.body
 Change password for 조성연
 ```
 
-### [GET] /auth/profile
+### [GET] /api/auth/profile
 
 get user profile
 (need Authorization header)
@@ -87,9 +89,41 @@ res.body
 }
 ```
 
+### [POST] /api/auth/verifymail
+
+send email verify code  
+
+req.body
+```json
+{
+    "email": "sungyeon52@gmail.com"
+}
+```
+
+res.body
+```json
+
+```
+
+### [POST] /api/auth/confirm-verifyemail
+
+confirm verify code 
+
+req.body
+```json
+{
+    "verifyCode": 844345
+}
+```
+
+res.body
+```json
+이메일 인증 완료
+```
+
 ## board/
 
-### [GET] /board/all
+### [GET] /api/board/all
 
 get all board 
 
@@ -122,7 +156,7 @@ res.body
 ]
 ```
 
-### [POST] /board/create
+### [POST] /api/board/create
 
 create board 
 
@@ -156,13 +190,13 @@ res.body
 }
 ```
 
-### [DELETE] /board/:id/delete
+### [DELETE] /api/board/:id/delete
 
 delete the board corresponding to the id
 
 No response except status code(204)
 
-### [POST] /board/:id/update
+### [POST] /api/board/:id/update
 update the board corresponding to thd id
 
 req.body

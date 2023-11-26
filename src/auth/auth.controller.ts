@@ -41,4 +41,14 @@ export class AuthController {
     getProfile(@Request() req) {
         return req.user;
     }
+
+    @Post('verifyemail')
+    verifyEmail(@Body('email') email: string) {
+        return this.authService.sendVerifyCode(email);
+    }
+
+    @Post('confirm-verifyemail')
+    confirmVerifyEmail(@Body('verifyCode') verifyCode: number) {
+        return this.authService.confirmVerifyCode(verifyCode);
+    }
 }
