@@ -7,15 +7,15 @@ tekton test
 
 | Method | URI                                   | Description            |
 |--------|---------------------------------------|------------------------|
-| POST   | [/api/auth/login](#post-authlogin)        | user login             |
-| POST   | [/api/auth/register](#post-authregister)  | user register          |
-| POST   | [/api/auth/changepw](#post-authchangepw)  | change password        |           
-| POST   | [/api/auth/verifymail](#post-authverifymail)                   | send email verify code        |
-| POST   | [/api/auth/confirm-verifyemail](#post-authconfirm-verifyemail) | confirm verify code           |
-| GET    | [/api/board/all](#get-boardall)     | get all board      |
-| POST    | [/api/board/create](#post-boardcreate)     | create board       |
-| DELETE    | [/api/board/:id/delete](#delete-boardiddelete)     | delete board       |
-| POST    | [/api/board/:id/update](#post-boardidupdate)     | change board       |
+| POST   | [/api/auth/login](#post-apiauthlogin)        | user login             |
+| POST   | [/api/auth/register](#post-apiauthregister)  | user register          |
+| POST   | [/api/auth/changepw](#post-apiauthchangepw)  | change password        |           
+| POST   | [/api/auth/verifymail](#post-apiauthverifymail)                   | send email verify code        |
+| POST   | [/api/auth/confirm-verifyemail](#post-apiauthconfirm-verifyemail) | confirm verify code           |
+| GET    | [/api/board/all](#get-apiboardall)     | get all board      |
+| POST    | [/api/board/create](#post-apiboardcreate)     | create board       |
+| DELETE    | [/api/board/:id/delete](#delete-apiboardiddelete)     | delete board       |
+| POST    | [/api/board/:id/update](#post-apiboardidupdate)     | change board       |
 
 ## auth/
 
