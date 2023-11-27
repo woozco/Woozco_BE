@@ -6,38 +6,41 @@ import {
     HttpStatus,
     Post,
     Request,
-    UseGuards
-} from '@nestjs/common';
-import { AuthGuard } from './auth.guard';
-import { AuthService } from './auth.service';
-import { LoginDto } from './dto/login.dto';
-import { CreateUserDto } from './dto/create-user.dto';
+    UseGuards,
+} from "@nestjs/common";
+import { CustomAuthGuard } from "./auth.guard";
+import { AuthService } from "./auth.service";
+import { LoginDto } from "./dto/login.dto";
+import { CreateUserDto } from "./dto/create-user.dto";
 
-@Controller('api/auth')
+@Controller("api/auth")
 export class AuthController {
-    constructor(private authService: AuthService) { }
+    constructor(private authService: AuthService) {}
 
     @HttpCode(HttpStatus.OK)
-    @Post('login')
+    @Post("login")
     login(@Body() loginDto: LoginDto) {
         return this.authService.login(loginDto);
     }
 
     @HttpCode(HttpStatus.OK)
-    @Post('register')
+    @Post("register")
     register(@Body() createUserDto: CreateUserDto) {
         return this.authService.register(createUserDto);
     }
 
-    @UseGuards(AuthGuard)
-    @Post('changepw')
+    @UseGuards(CustomAuthGuard)
+    @Post("changepw")
     changePW(@Request() req) {
-        const loginDto: LoginDto = {'email': req.user.sub, 'password': req.body.password};
+        const loginDto: LoginDto = {
+            email: req.user.sub,
+            password: req.body.password,
+        };
         return this.authService.changePW(loginDto);
     }
 
-    @UseGuards(AuthGuard)
-    @Get('profile')
+    @UseGuards(CustomAuthGuard)
+    @Get("profile")
     getProfile(@Request() req) {
         return req.user;
     }
@@ -52,3 +55,4 @@ export class AuthController {
         return this.authService.confirmVerifyCode(verifyCode);
     }
 }
+

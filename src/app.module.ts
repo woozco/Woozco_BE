@@ -31,6 +31,7 @@ import { Verify } from './auth/entities/verify.entity';
       database: process.env.DB_NAME,
       entities: [User, BoardEntity, RoomEntity, Verify],
       synchronize: true,
+      autoLoadEntities: true,
     }),
     JwtModule.registerAsync({
       inject: [ConfigService],

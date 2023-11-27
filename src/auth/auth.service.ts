@@ -9,6 +9,12 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { JwtService } from '@nestjs/jwt';
 import { Repository } from 'typeorm';
 import { VerifyDto } from './dto/verify.dto';
+import { Injectable, UnauthorizedException } from "@nestjs/common";
+import { UsersService } from "../users/users.service";
+import * as bcrypt from "bcryptjs";
+import { LoginDto } from "./dto/login.dto";
+import { CreateUserDto } from "./dto/create-user.dto";
+import { JwtService } from "@nestjs/jwt";
 
 @Injectable()
 export class AuthService {
@@ -19,12 +25,18 @@ export class AuthService {
         private readonly jwtService: JwtService,
         private readonly mailService: MailService
     ) { }
+        private usersService: UsersService,
+        private jwtService: JwtService
+    ) {}
 
     async register(createUserDto: CreateUserDto) {
         const salt = await bcrypt.genSalt();
-        createUserDto.password = await bcrypt.hash(createUserDto.password, salt);
+        createUserDto.password = await bcrypt.hash(
+            createUserDto.password,
+            salt
+        );
         this.usersService.insert(createUserDto);
-        return 'Add user ' + createUserDto.name;
+        return "Add user " + createUserDto.name;
     }
 
     async login(loginDto: LoginDto) {
@@ -36,9 +48,9 @@ export class AuthService {
             const payload = { sub: user.email, username: user.name };
             return {
                 access_token: await this.jwtService.signAsync(payload, {
-                    expiresIn: '30m',
+                    expiresIn: "30m",
                 }),
-            }
+            };
         } else {
             throw new UnauthorizedException();
         }
@@ -52,6 +64,17 @@ export class AuthService {
         return 'Change password for ' + user.name; 
     }
 
+    async googleLogin(req) {
+        if (!req.user) {
+            return "No user from google";
+        }
+
+        return {
+            message: "User information from google",
+            user: req.user,
+        };
+    }
+    
     async confirmVerifyCode(verifyCode: number) {
         const result: Verify = await this.verifyRepository.findOneBy({verifyCode});
         if(!result) {

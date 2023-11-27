@@ -7,11 +7,10 @@ import { MailModule } from '../mail/mail.module';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Verify } from './entities/verify.entity';
+import { GoogleModule } from './google/google.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Verify]),
-    MailModule,
     UsersModule,
     JwtModule.registerAsync({
       inject: [ConfigService],
@@ -21,9 +20,10 @@ import { Verify } from './entities/verify.entity';
         signOptions: { expiresIn: '30m' },
       }),
     })
+    GoogleModule,
   ],
   controllers: [AuthController],
   providers: [AuthService],
   exports: [AuthService]
 })
-export class AuthModule { }
+export class AuthModule {}
