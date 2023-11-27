@@ -25,9 +25,10 @@ export class GoogleController {
     @Get("/redirect")
     @UseGuards(AuthGuard("google"))
     async googleAuthRedirect(@Request() req, @Response() res) {
-        // 여기로 token를 기반으로한 jwt가 req로 들어옴
-        const token = await this.googleService.googleLogin(req);
-        res.cookie("jwt", token, { httpOnly: true });
+        console.log(req.user)
+        //const token = await this.googleService.googleLogin(req);
+        const userJson = JSON.stringify(req.user);
+        res.cookie("jwt", userJson, { httpOnly: true });
         res.redirect("http://localhost:8080/success"); // 클라이언트 페이지로 리다이렉트
     }
 

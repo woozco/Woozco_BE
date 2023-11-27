@@ -11,6 +11,8 @@ import { GoogleModule } from './google/google.module';
 
 @Module({
   imports: [
+    TypeOrmModule.forFeature([Verify]),
+    MailModule,
     UsersModule,
     JwtModule.registerAsync({
       inject: [ConfigService],
@@ -19,7 +21,7 @@ import { GoogleModule } from './google/google.module';
         secret: process.env.JWT_SECRET,
         signOptions: { expiresIn: '30m' },
       }),
-    })
+    }),
     GoogleModule,
   ],
   controllers: [AuthController],

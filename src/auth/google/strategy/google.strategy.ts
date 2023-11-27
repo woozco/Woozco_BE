@@ -78,6 +78,6 @@ export class GoogleStrategy extends PassportStrategy(Strategy, "google") {
 
         const jwtToken = this.googleService.createJwtToken(outerUser); // AuthService에서 createJwtToken 메서드를 구현해서 사용
 
-        done(null, { user, jwtToken });
+        done(null,  user );
     }
 }

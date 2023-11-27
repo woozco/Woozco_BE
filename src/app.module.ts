@@ -42,7 +42,7 @@ import { Verify } from './auth/entities/verify.entity';
     UsersModule,
     AuthModule,
     BoardModule,
-    RoomsModule
+    RoomsModule,
   ],
   controllers: [AppController],
   providers: [AppService]

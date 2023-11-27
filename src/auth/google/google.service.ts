@@ -28,10 +28,7 @@ export class GoogleService {
             return "No user from google";
         }
 
-        return {
-            message: "User information from google",
-            user: req.user,
-        };
+        return req.user;
     }
 
     async validateUserFromAccessToken(payload: payloadDTO) {
@@ -40,12 +37,12 @@ export class GoogleService {
         });
 
         if (!user) {
-            console.log("validateUserFromAccessToken: user" )
+            console.log("validateUserFromAccessToken: user");
             throw new NotFoundException("User not found");
         }
 
         if (user.accessToken !== payload.accessToken) {
-            console.log("validateUserFromAccessToken: Invalid access token" )
+            console.log("validateUserFromAccessToken: Invalid access token");
             throw new UnauthorizedException("Invalid access token");
         }
 
