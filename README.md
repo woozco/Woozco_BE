@@ -1,6 +1,5 @@
 # Woozco_BE
-tekton
-tekton
+
 ## API Docs
 
 | Method | URI                                   | Description            |
