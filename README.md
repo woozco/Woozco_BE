@@ -1,5 +1,5 @@
 # Woozco_BE
-1
+
 ## API Docs
 
 | Method | URI                                   | Description            |
